@@ -1,4 +1,8 @@
 package packZad5;
+
+import java.util.Collections;
+import java.util.List;
+
 /*
 5 Zadanie:
 W pliku dane_zad.txt znajdują się historyczne wyniki gry w mario użytkowników.
@@ -17,8 +21,19 @@ W pliku dane_zad.txt znajdują się historyczne wyniki gry w mario użytkownikó
 public class Main {
     public static void main(String[] args) {
         System.out.println();
+        Utilities utilities = new Utilities();
+        ScannerWork scannerWork = new ScannerWork();
 
-        Utilities importData = new Utilities();
-        System.out.println(Utilities.getStringFromFile("src/main/java/packZad5/dane_zad.csv"));
+        System.out.println("Program wczytuje wyniki gry w Mario i umożliwia przeglądanie ich posortowanych.");
+        String stringFromFile = utilities.getStringFromFile("src/main/java/packZad5/dane_zad.csv");
+        String[] tab = utilities.createStringTable(stringFromFile);
+        List<GameResults> gameResultsList = utilities.createGameResultsList(tab);
+
+//        char znak = scannerWork.yourChoise();
+        utilities.mainWork(gameResultsList);
+
+//        Collections.sort(gameResultsList, new GameResultsComparator("timestamp"));
+//        System.out.println();
+//        utilities.printList(gameResultsList);
     }
 }
